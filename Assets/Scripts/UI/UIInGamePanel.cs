@@ -5,16 +5,28 @@ namespace Game.UI
 {
     public class UIInGamePanel : UIPanel
     {
+        [SerializeField] private GameObject title;
+        [SerializeField] private GameObject tutorial;
         [SerializeField] private TextMeshProUGUI scoreText;
 
-        private void OnEnable()
+        public override void Show()
         {
-            scoreText.text = GameManager.Instance.score.ToString();
+            base.Show();
+            title.SetActive(true);
+            tutorial.SetActive(true);
+            scoreText.text = GameController.Instance.score.ToString();
+        }
+
+        public void OnClickStartButton()
+        {
+            GameController.Instance.StartPlayGame();
+            title.SetActive(false);
+            tutorial.SetActive(false);
         }
 
         private void FixedUpdate()
         {
-            scoreText.text = GameManager.Instance.score.ToString();
+            scoreText.text = GameController.Instance.score.ToString();
         }
     }
 }

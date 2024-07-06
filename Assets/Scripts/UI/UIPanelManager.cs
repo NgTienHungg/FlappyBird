@@ -22,11 +22,23 @@ namespace Game.UI
             }
         }
 
-        private void Start()
+        public void StartGame()
         {
+            uiHomePanel.Show();
+            uiInGamePanel.Hide();
+            uiGameOverPanel.Hide();
+        }
+
+        public void FromHomeToPlay()
+        {
+            uiHomePanel.Hide();
             uiInGamePanel.Show();
-            // uiInGamePanel.Hide();
-            // uiGameOverPanel.Hide();
+        }
+
+        public void ShowGameOver()
+        {
+            uiInGamePanel.Hide();
+            uiGameOverPanel.Show();
         }
     }
 }

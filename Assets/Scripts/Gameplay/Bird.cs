@@ -8,18 +8,26 @@ namespace Game
         [SerializeField] private float rotationSpeed;
 
         private Rigidbody2D _rigidbody;
+        private Animator _animator;
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
+            _animator = GetComponent<Animator>();
         }
 
         private void Update()
         {
             if (Input.GetMouseButtonDown(0))
             {
-                _rigidbody.velocity = Vector2.up * velocity;
+                Flap();
             }
+        }
+
+        private void Flap()
+        {
+            SoundManager.Instance.PlayOneShot("wing");
+            _rigidbody.velocity = Vector2.up * velocity;
         }
 
         private void FixedUpdate()
@@ -31,9 +39,29 @@ namespace Game
         {
             if (other.CompareTag("Score"))
             {
-                Debug.Log("ăn điểm");
-                GameManager.Instance.score++;
+                GetScore();
             }
+        }
+
+        private void GetScore()
+        {
+            SoundManager.Instance.PlayOneShot("point");
+            GameController.Instance.score++;
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Pipe"))
+            {
+                Die();
+            }
+        }
+
+        private void Die()
+        {
+            SoundManager.Instance.PlaySound("hit");
+            _animator.enabled = false;
+            GameController.Instance.GameOver();
         }
     }
 }
