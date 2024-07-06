@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Score
   layers:
   - Default
   - TransparentFX
@@ -42,11 +43,14 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Background
-    uniqueID: 1398349139
+    uniqueID: 1346907171
     locked: 0
   - name: Gameplay
-    uniqueID: 1997533437
+    uniqueID: 842429475
     locked: 0
   - name: Foreground
-    uniqueID: 1533111989
+    uniqueID: 2982830843
+    locked: 0
+  - name: UI
+    uniqueID: 4126492859
     locked: 0
